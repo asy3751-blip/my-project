@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .cube { width: 100px; height: 100px; transform-style: preserve-3d; animation: rotate 4s infinite linear; }
+        .face { position: absolute; width: 100px; height: 100px; border: 2px solid #0ff; background: rgba(0,255,255,0.2); box-shadow: 0 0 15px #0ff; }
+        .f { transform: translateZ(50px); }
+        .bk { transform: rotateY(180px) translateZ(50px); }
+        .l { transform: rotateY(-90px) translateZ(50px); }
+        .r { transform: rotateY(90px) translateZ(50px); }
+        .t { transform: rotateX(90px) translateZ(50px); }
+        .bm { transform: rotateX(-90px) translateZ(50px); }
+        @keyframes rotate { from { transform: rotateX(0deg) rotateY(0deg); } to { transform: rotateX(360deg) rotateY(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <div class="face f"></div><div class="face bk"></div>
+        <div class="face l"></div><div class="face r"></div>
+        <div class="face t"></div><div class="face bm"></div>
+    </div>
+</body>
+</html>
