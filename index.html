@@ -1,47 +1,28 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>3D Interactive Cube</title>
+    <title>My 3D Cube</title>
     <style>
-        body { margin: 0; background: #111; overflow: hidden; }
-        canvas { display: block; }
+        body { margin: 0; background: #111; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .cube { width: 200px; height: 200px; transform-style: preserve-3d; animation: rotate 5s infinite linear; }
+        .face { position: absolute; width: 200px; height: 200px; border: 2px solid #0ff; opacity: 0.8; background: rgba(0, 255, 255, 0.1); }
+        .front  { transform: translateZ(100px); }
+        .back   { transform: rotateY(180px) translateZ(100px); }
+        .left   { transform: rotateY(-90px) translateZ(100px); }
+        .right  { transform: rotateY(90px) translateZ(100px); }
+        .top    { transform: rotateX(90px) translateZ(100px); }
+        .bottom { transform: rotateX(-90px) translateZ(100px); }
+        @keyframes rotate { from { transform: rotateX(0) rotateY(0); } to { transform: rotateX(360deg) rotateY(360deg); } }
     </style>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    
-    <script>
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshNormalMaterial();
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        camera.position.z = 5;
-
-        // تفعيل التحكم باللمس
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; // حركة ناعمة
-
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update(); // تحديث مكان الكاميرا بناءً على لمستك
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
-    </script>
+    <div class="cube">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face left"></div>
+        <div class="face right"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+    </div>
 </body>
 </html>
